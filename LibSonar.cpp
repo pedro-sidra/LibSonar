@@ -1,8 +1,8 @@
 /*
-	Biblioteca para uso do Sensor Ultrassonico HC-SR04
+	Interface for use with HC-SR04
 	08/05/2018
 
-	Tempo de time out deve ser especificado em microssegundos
+	Time out should be specified in microsseconds
 */
 #if ARDUINO >= 100
   #include "Arduino.h"
@@ -28,21 +28,21 @@ Sonar::Sonar(int _TRIG, int _ECHO, long _TOUT){
 	Time_out = _TOUT;
 }
 
-long Sonar::medeTempo(){
+long Sonar::measureTime(){
 	digitalWrite(Trig_pin, LOW);
   	delayMicroseconds(2);
   	digitalWrite(Trig_pin, HIGH);
   	delayMicroseconds(10);
   	digitalWrite(Trig_pin, LOW);
-  	duracao = pulseIn(Echo_pin,HIGH,Time_out);
-  	if ( duracao == 0 ) {
-		duracao = Time_out; }
-  	return duracao;
+  	duration = pulseIn(Echo_pin,HIGH,Time_out);
+  	if ( duration == 0 ) {
+		duration = Time_out; }
+  	return duration;
 }	
 
-long Sonar::medeDistancia(){
-	medeTempo();
-	distancia = duracao*0.034/2 ;
- 	return distancia;
+long Sonar::measureDist(){
+	measureTime();
+	distance = duration*0.034/2 ;
+ 	return distance;
 	
 }

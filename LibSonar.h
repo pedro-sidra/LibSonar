@@ -1,7 +1,7 @@
 /*
-	Biblioteca para uso do Sensor Ultrassonico HC-SR04
-	08/05/2018
+ * Interface for sonars for use with eduBot
 */
+
 
 #ifndef LibSonar_h
 #define LibSonar_h
@@ -15,15 +15,15 @@
 class Sonar{
 	public:
 	Sonar(){}
-	Sonar(int _TRIG, int _ECHO); // Construtor da classe
-		Sonar(int _TRIG, int _ECHO, long _TOUT);
-	long medeTempo();
-	long medeDistancia();
+	Sonar(int _TRIG, int _ECHO); 
+	Sonar(int _TRIG, int _ECHO, long _TOUT);
+	long measureTime();
+	long measureDist();
 	private:
 	int Trig_pin;
 	int Echo_pin;
 	long Time_out;
-	long distancia, duracao;
+	long distance, duration;
 };
 
 #endif
